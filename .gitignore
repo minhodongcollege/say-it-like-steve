@@ -1,0 +1,14 @@
+# Whitelist: only code and docs are published. Audio, transcripts, training pairs,
+# trained models, references and my personal notes stay on this Mac.
+*
+!*/
+!.gitignore
+!README.md
+!LICENSE
+!*.py
+!*.sh
+!steve
+!docs/*.png
+!data/demo_labels.json
+!data/eval/baseline_examples.md
+transcribe_test/

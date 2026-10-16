@@ -1,0 +1,3 @@
+#!/bin/zsh
+# Steve rewriter. Copy text, run ./steve, paste. Options: --local (my model, offline), or text in quotes. See rewrite.py.
+exec uv run -q --with mlx-lm python -I "${0:A:h}/rewrite.py" "$@"
