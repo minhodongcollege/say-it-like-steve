@@ -12,12 +12,12 @@ Everything runs on my Mac (M5 Pro, 48 GB).
 
 | Step | Script | What it does |
 |---|---|---|
-| 1. Collect | `get_audio.sh` | 29 of his talks and interviews, 1980–2011, about 26 hours (yt-dlp). Mostly unscripted, because that's where he *explains* instead of *performs*. |
+| 1. Collect | `get_audio.sh` | 20 of his talks and interviews, 1983–2011, about 23 hours (yt-dlp; v4 added 9 more, see below). Mostly unscripted, because that's where he *explains* instead of *performs*. |
 | 2. Transcribe | `transcribe.sh` | NVIDIA Parakeet v2 (parakeet-mlx). |
 | 3. Keep only Steve | `keep_steve.py` | A voiceprint of Steve (SpeechBrain ECAPA) drops interviewers, narrators and the audience. |
 | 4. Passages | `make_chunks.py` | 765 clean passages, one idea each, cut at natural pauses. |
 | 5. Clean | `clean_steve.py` | A local Qwen3 30B removes stutters and false starts; a check makes sure it only *deleted* words. |
-| 6. Pair with my writing | `make_pairs.py` | **The part made for me:** each passage is paired with the same idea written the way I write, so the model learns one job: my writing → how Steve would say it. |
+| 6. Pair with my writing | `make_pairs.py` | **The part made for me:** a local Qwen3 30B rewrites each passage the way I write, learning from 34 samples of my own writing, so the model learns one job: my writing → how Steve would say it. |
 | 7. Train | `train.sh` | Fine-tune Google's open Gemma 4 (12B) with LoRA in mlx-lm. About 40 minutes. |
 | 8. Test | `run_eval.py`, `check_eval.py`, `judge.py` | Held-out talks and my own writing, checks for copying, then blind A/B judging (each pair judged twice with A and B swapped). |
 
